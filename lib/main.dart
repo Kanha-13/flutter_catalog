@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,47 +11,83 @@ void main() {
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("My first flutter app"),
-      ),
-      body: Container(),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("Kanha Agrawal"),
-              accountEmail: Text("Kanha.agr11@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://images.unsplash.com/photo-1622832148332-b436648cef62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80"),
+        backgroundColor: Colors.purple.shade200,
+        appBar: AppBar(
+          title: Text(
+            "My First App",
+            style: TextStyle(fontSize: 25.0),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    "assets/kanha.jpg",
+                    fit: BoxFit.cover,
+                    width: 300,
+                    height: 300,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text("Change me",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      // obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Enter Your name",
+                          labelText: "Name",
+                          border: OutlineInputBorder()),
+                    ),
+                  ),
+                ],
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Account"),
-              subtitle: Text("Personal"),
-              trailing: Icon(Icons.edit),
-            ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text("Email"),
-              subtitle: Text("kanha.agr11@gmail.com"),
-              trailing: Icon(Icons.send),
-            ),
-          ],
+          ),
         ),
-      ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.edit),
-        backgroundColor: Colors.purple,
-      ),
-    );
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              UserAccountsDrawerHeader(
+                  accountName: Text("Kanha Agrawal"),
+                  accountEmail: Text("kanha.agr11@gmail.com"),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: AssetImage('assets/kanha.jpg'),
+                  )),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text("Account"),
+                subtitle: Text("Personal"),
+                trailing: Icon(Icons.edit),
+              ),
+              ListTile(
+                leading: Icon(Icons.email),
+                title: Text("Email"),
+                subtitle: Text("Kanha.agr11@gmail.com"),
+                trailing: Icon(Icons.send),
+              )
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(
+            Icons.refresh,
+          ),
+        ));
   }
 }
